@@ -66,7 +66,7 @@ public class SourceCodePanel extends JPanel {
 
 		public static SupportedLanguage getLanguageByName(String languageName) {
 			for (SupportedLanguage lang : SupportedLanguage.values()) {
-				if (lang.equals(languageName)) {
+				if (lang.languageName.equals(languageName)) {
 					return lang;
 				}
 			}
