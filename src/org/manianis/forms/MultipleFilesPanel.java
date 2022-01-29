@@ -128,6 +128,11 @@ public class MultipleFilesPanel extends JPanel {
 	private void initPanel() {
 		updateFilesCount();
 		DropTarget dropTarget = new DropTarget() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public synchronized void drop(DropTargetDropEvent evt) {
 				try {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);

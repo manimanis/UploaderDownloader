@@ -6,7 +6,6 @@ package org.manianis.forms;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +13,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import org.apache.commons.io.FileUtils;
 import org.manianis.ApplicationsParameters;
 import org.manianis.FileDownloader;
 import org.manianis.utils.StringUtil;
@@ -25,6 +23,10 @@ import org.manianis.utils.StringUtil;
  */
 public class MainFrame extends javax.swing.JFrame implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ApplicationsParameters appParams;
 
 	/**

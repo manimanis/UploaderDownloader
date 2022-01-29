@@ -1,5 +1,6 @@
 package org.manianis.forms;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,8 +9,22 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
-import javax.print.attribute.standard.JobPriority;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -21,13 +36,11 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.entity.mime.FileBody;
-import org.apache.hc.client5.http.entity.mime.HttpMultipartMode;
 import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
-import org.apache.hc.client5.http.entity.mime.StringBody;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
@@ -40,29 +53,6 @@ import org.json.JSONObject;
 import org.manianis.ApplicationsParameters;
 import org.manianis.forms.SourceCodePanel.SupportedLanguage;
 import org.manianis.utils.StringUtil;
-
-import java.awt.event.ItemListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.Calendar;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-import java.awt.event.ItemEvent;
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class FilesUploaderFrame extends JFrame {
 
@@ -184,7 +174,7 @@ public class FilesUploaderFrame extends JFrame {
 				updateSubmitButton();
 			}
 		});
-		txtClasse.setModel(new DefaultComboBoxModel(new String[] { "", "2TI", "4ECO", "4T" }));
+		txtClasse.setModel(new DefaultComboBoxModel<>(new String[] { "", "2TI", "4ECO", "4T" }));
 		GridBagConstraints gbc_txtClasse = new GridBagConstraints();
 		gbc_txtClasse.gridy = 2;
 		gbc_txtClasse.insets = new Insets(5, 5, 5, 0);
@@ -234,7 +224,7 @@ public class FilesUploaderFrame extends JFrame {
 				updateSelectedLanguage();
 			}
 		});
-		txtLanguage.setModel(new DefaultComboBoxModel(SourceCodePanel.SupportedLanguage.LANGUAGES));
+		txtLanguage.setModel(new DefaultComboBoxModel<SupportedLanguage>(SourceCodePanel.SupportedLanguage.LANGUAGES));
 		panel.add(txtLanguage);
 
 		panelSelectFiles = new MultipleFilesPanel();
