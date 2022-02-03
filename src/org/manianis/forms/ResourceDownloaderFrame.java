@@ -21,7 +21,7 @@ import org.manianis.utils.StringUtil;
  *
  * @author hp
  */
-public class MainFrame extends javax.swing.JFrame implements Runnable {
+public class ResourceDownloaderFrame extends javax.swing.JFrame implements Runnable {
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 	/**
 	 * Creates new form MainFrame
 	 */
-	public MainFrame() {
+	public ResourceDownloaderFrame() {
 		initComponents();
 		appParams = ApplicationsParameters.getInstance();
 		// initParameters();
@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 						"Echec de création de dossier", JOptionPane.OK_OPTION | JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (IOException ex) {
-			Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(ResourceDownloaderFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -418,13 +418,13 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ResourceDownloaderFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ResourceDownloaderFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ResourceDownloaderFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(ResourceDownloaderFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
@@ -433,7 +433,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new MainFrame().setVisible(true);
+				new ResourceDownloaderFrame().setVisible(true);
 			}
 		});
 	}
