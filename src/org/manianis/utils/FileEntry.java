@@ -1,4 +1,4 @@
-package org.manianis.forms;
+package org.manianis.utils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

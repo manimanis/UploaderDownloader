@@ -22,6 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.manianis.utils.FileEntry;
+
 public class MultipleFilesPanel extends JPanel {
 
 	/**

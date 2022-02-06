@@ -20,11 +20,25 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.border.SoftBevelBorder;
+
+import org.manianis.utils.FolderUtil;
+
+import javax.swing.border.BevelBorder;
+import javax.swing.JScrollPane;
 
 public class CleanWorkingFolder extends JFrame {
 
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JLabel lblFoldersToClean;
+	private JCheckBox chkDesktop;
+	private JCheckBox chkDocuments;
+	private JCheckBox chkDownloads;
+	private JCheckBox chkOthers;
+	private JButton btnAddFolder;
+	private JButton btnRemoveFolder;
+	private JList listFolders;
 
 	/**
 	 * Launch the application.
@@ -54,59 +68,59 @@ public class CleanWorkingFolder extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{516, 0};
-		gbl_contentPane.rowHeights = new int[] {300, 40};
+		gbl_contentPane.rowHeights = new int[] {300};
 		gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0};
+		gbl_contentPane.rowWeights = new double[]{1.0};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel panel = new JPanel();
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] {98, 98, 98, 98, 98};
 		gbl_panel.rowHeights = new int[] {23, 23, 23, 23};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel = new JLabel("Dossiers à nettoyer");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		lblFoldersToClean = new JLabel("Dossiers à nettoyer");
+		GridBagConstraints gbc_lblFoldersToClean = new GridBagConstraints();
+		gbc_lblFoldersToClean.fill = GridBagConstraints.BOTH;
+		gbc_lblFoldersToClean.insets = new Insets(5, 5, 5, 5);
+		gbc_lblFoldersToClean.gridx = 0;
+		gbc_lblFoldersToClean.gridy = 0;
+		panel.add(lblFoldersToClean, gbc_lblFoldersToClean);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Bureau");
-		chckbxNewCheckBox.setSelected(true);
-		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
-		gbc_chckbxNewCheckBox.fill = GridBagConstraints.BOTH;
-		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox.gridx = 1;
-		gbc_chckbxNewCheckBox.gridy = 0;
-		panel.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		chkDesktop = new JCheckBox("Bureau");
+		chkDesktop.setSelected(true);
+		GridBagConstraints gbc_chkDesktop = new GridBagConstraints();
+		gbc_chkDesktop.fill = GridBagConstraints.BOTH;
+		gbc_chkDesktop.insets = new Insets(5, 5, 5, 5);
+		gbc_chkDesktop.gridx = 1;
+		gbc_chkDesktop.gridy = 0;
+		panel.add(chkDesktop, gbc_chkDesktop);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Documents");
-		GridBagConstraints gbc_chckbxNewCheckBox_1 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_1.fill = GridBagConstraints.BOTH;
-		gbc_chckbxNewCheckBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox_1.gridx = 2;
-		gbc_chckbxNewCheckBox_1.gridy = 0;
-		panel.add(chckbxNewCheckBox_1, gbc_chckbxNewCheckBox_1);
+		chkDocuments = new JCheckBox("Documents");
+		GridBagConstraints gbc_chkDocuments = new GridBagConstraints();
+		gbc_chkDocuments.fill = GridBagConstraints.BOTH;
+		gbc_chkDocuments.insets = new Insets(5, 5, 5, 5);
+		gbc_chkDocuments.gridx = 2;
+		gbc_chkDocuments.gridy = 0;
+		panel.add(chkDocuments, gbc_chkDocuments);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Téléchargements");
-		GridBagConstraints gbc_chckbxNewCheckBox_2 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_2.fill = GridBagConstraints.BOTH;
-		gbc_chckbxNewCheckBox_2.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox_2.gridx = 3;
-		gbc_chckbxNewCheckBox_2.gridy = 0;
-		panel.add(chckbxNewCheckBox_2, gbc_chckbxNewCheckBox_2);
+		chkDownloads = new JCheckBox("Téléchargements");
+		GridBagConstraints gbc_chkDownloads = new GridBagConstraints();
+		gbc_chkDownloads.fill = GridBagConstraints.BOTH;
+		gbc_chkDownloads.insets = new Insets(5, 5, 5, 5);
+		gbc_chkDownloads.gridx = 3;
+		gbc_chkDownloads.gridy = 0;
+		panel.add(chkDownloads, gbc_chkDownloads);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Autres");
-		GridBagConstraints gbc_chckbxNewCheckBox_3 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_3.fill = GridBagConstraints.BOTH;
-		gbc_chckbxNewCheckBox_3.insets = new Insets(0, 0, 5, 0);
-		gbc_chckbxNewCheckBox_3.gridx = 4;
-		gbc_chckbxNewCheckBox_3.gridy = 0;
-		panel.add(chckbxNewCheckBox_3, gbc_chckbxNewCheckBox_3);
+		chkOthers = new JCheckBox("Autres");
+		GridBagConstraints gbc_chkOthers = new GridBagConstraints();
+		gbc_chkOthers.fill = GridBagConstraints.BOTH;
+		gbc_chkOthers.insets = new Insets(5, 5, 5, 0);
+		gbc_chkOthers.gridx = 4;
+		gbc_chkOthers.gridy = 0;
+		panel.add(chkOthers, gbc_chkOthers);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -114,51 +128,63 @@ public class CleanWorkingFolder extends JFrame {
 		gbc_panel.gridy = 0;
 		contentPane.add(panel, gbc_panel);
 		
-		JList list = new JList();
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.gridheight = 3;
-		gbc_list.gridwidth = 4;
-		gbc_list.insets = new Insets(0, 0, 5, 5);
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.gridx = 0;
-		gbc_list.gridy = 1;
-		panel.add(list, gbc_list);
+		btnAddFolder = new JButton("Ajouter...");
+		GridBagConstraints gbc_btnAddFolder = new GridBagConstraints();
+		gbc_btnAddFolder.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnAddFolder.insets = new Insets(5, 5, 5, 5);
+		gbc_btnAddFolder.gridx = 4;
+		gbc_btnAddFolder.gridy = 1;
+		panel.add(btnAddFolder, gbc_btnAddFolder);
 		
-		JButton btnNewButton = new JButton("Ajouter...");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 1;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		btnRemoveFolder = new JButton("Supprimer...");
+		GridBagConstraints gbc_btnRemoveFolder = new GridBagConstraints();
+		gbc_btnRemoveFolder.insets = new Insets(5, 5, 5, 5);
+		gbc_btnRemoveFolder.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnRemoveFolder.gridx = 4;
+		gbc_btnRemoveFolder.gridy = 2;
+		panel.add(btnRemoveFolder, gbc_btnRemoveFolder);
 		
-		JButton btnNewButton_1 = new JButton("Supprimer...");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_1.gridx = 4;
-		gbc_btnNewButton_1.gridy = 2;
-		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
+		gbc_scrollPane.gridheight = 3;
+		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		panel.add(scrollPane, gbc_scrollPane);
+		
+		listFolders = new JList();
+		scrollPane.setViewportView(listFolders);
+		listFolders.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		JPanel panel_1 = new JPanel();
 		
-		JLabel lblNewLabel_1 = new JLabel("Procédure de nettoyage");
+		JLabel lblCleanProcedure = new JLabel("Procédure de nettoyage");
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Regrouper dans un dossier");
-		rdbtnNewRadioButton.setSelected(true);
-		buttonGroup.add(rdbtnNewRadioButton);
+		JRadioButton rdMoveToFolder = new JRadioButton("Regrouper dans un dossier");
+		rdMoveToFolder.setSelected(true);
+		buttonGroup.add(rdMoveToFolder);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Supprimer définitivement");
-		buttonGroup.add(rdbtnNewRadioButton_1);
+		JRadioButton rdRemove = new JRadioButton("Supprimer définitivement");
+		buttonGroup.add(rdRemove);
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 3;
+		gbc_panel_1.gridy = 1;
 		contentPane.add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
-		panel_1.add(lblNewLabel_1);
-		panel_1.add(rdbtnNewRadioButton);
-		panel_1.add(rdbtnNewRadioButton_1);
-		
+		panel_1.setLayout(new GridLayout(1, 3, 5, 5));
+		panel_1.add(lblCleanProcedure);
+		panel_1.add(rdMoveToFolder);
+		panel_1.add(rdRemove);
+		initInterface();
+	}
+	
+	private void initInterface() {
+		System.out.println(FolderUtil.getDesktopFolder());
+		System.out.println(FolderUtil.getDownloadsFolder());
+		System.out.println(FolderUtil.getDocumentsFolder());
+		System.out.println(FolderUtil.getHomeFolder());
 	}
 
 }

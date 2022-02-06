@@ -24,28 +24,6 @@ import org.apache.commons.io.FileUtils;
  */
 public class FileDownloader {
 
-	public static boolean createFolder(String folderPath) {
-		Path path = Path.of(folderPath);
-		if (Files.exists(path)) {
-			return Files.isDirectory(path);
-		}
-		try {
-			Files.createDirectories(path);
-			return true;
-		} catch (IOException ex) {
-			return false;
-		}
-	}
-	
-	public static boolean fileExists(String filePath) {
-		Path file = Path.of(filePath);
-		return Files.exists(file);
-	}
-
-	public static void openFolder(String path) throws IOException {
-		Runtime.getRuntime().exec("explorer.exe /select," + path);
-	}
-
 	public static void loadFileFromUrl(String theUrl, String filePath) throws MalformedURLException, IOException {
 		URL url = new URL(theUrl);
 		File destination_file = new File(filePath);

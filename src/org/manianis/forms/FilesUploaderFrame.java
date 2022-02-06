@@ -52,6 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.manianis.ApplicationsParameters;
 import org.manianis.forms.SourceCodePanel.SupportedLanguage;
+import org.manianis.utils.FileEntry;
 import org.manianis.utils.StringUtil;
 
 public class FilesUploaderFrame extends JFrame {

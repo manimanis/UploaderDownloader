@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 
 import org.manianis.ApplicationsParameters;
 import org.manianis.FileDownloader;
+import org.manianis.utils.FolderUtil;
 import org.manianis.utils.StringUtil;
 
 /**
@@ -101,7 +102,7 @@ public class ResourceDownloaderFrame extends javax.swing.JFrame implements Runna
 	private void openUserFolder() {
 		try {
 			String userFolder = appParams.getUserFolder();
-			if (FileDownloader.createFolder(userFolder)) {
+			if (FolderUtil.createFolder(userFolder)) {
 				String cmd = "explorer.exe " + appParams.getUserFolder();
 				Runtime.getRuntime().exec(cmd);
 			} else {
@@ -133,7 +134,7 @@ public class ResourceDownloaderFrame extends javax.swing.JFrame implements Runna
 		int downloaded = 0, failed = 0;
 		for (String filename : filesArr) {
 			String localPath = Paths.get(appParams.getUserFolder(), filename).toString();
-			if (ask && FileDownloader.fileExists(localPath)) {
+			if (ask && FolderUtil.fileExists(localPath)) {
 				String[] options = { "Oui pour tous", "Oui", "Non" };
 				int confirm = JOptionPane.showOptionDialog(null,
 						"Le fichier '" + filename + "' existe déjà.\nVoulez-vous le télécharger une nouvelle fois ?",
